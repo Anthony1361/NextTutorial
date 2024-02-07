@@ -1,0 +1,80 @@
+"use client";
+
+import { Button, Input } from "@material-tailwind/react";
+import { useState } from "react";
+
+const CreateUser = () => {
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+      const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        if(!id || !name || !email || !password){
+            alert('Please fill all the input fields')
+            // The return is if the user do not specify anything wromg .. //
+            return;
+        }
+
+        try{
+            const response = await fetch('/api/users-again', {
+              method: "POST",
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({id, name, email, password})
+          })
+
+          if(response.ok){
+            alert("User successfully created")
+          } else{
+            alert("Something went wrong :(")
+            return;
+          }
+
+        } catch(error){
+            alert(error)
+            return
+        }
+      }
+
+  return (
+    <div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <Input
+            label="ID"
+            type="text"
+            placeholder="ID"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+          <Input
+            label="Name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Input
+            label="Email"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <Button className="mt-2" type="submit">Submit</Button>
+        </form>
+      </div> 
+    </div>
+  );
+};
+
+export default CreateUser;

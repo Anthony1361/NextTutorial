@@ -1,0 +1,20 @@
+@tailwind utilities;
+
+body{
+    background-color: blueviolet;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+h1{
+    text-align: center;
+}
+
+.link{
+    margin: 10px;
+    text-decoration: none;
+    color: white;
+}
