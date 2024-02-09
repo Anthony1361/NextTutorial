@@ -1,8 +1,11 @@
 {
+  "homepage": "https://Anthony1361.github.io/Next-Tutorial",
   "name": "next-course",
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
